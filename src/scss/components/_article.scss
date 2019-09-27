@@ -1,0 +1,11 @@
+.article {
+  @apply text-base leading-relaxed;
+
+  @screen md {
+    @apply text-lg;
+  }
+
+  p + p {
+    @apply mt-8;
+  }
+}

@@ -1,0 +1,77 @@
+{
+    "post": {
+        "title": "Page title",
+        "thumbnail": "",
+        "date": "",
+        "author": {
+            "first_name": "Janez",
+            "last_name": "Novak"
+        }
+    },
+    "cta": {
+        "title": "CTA",
+        "page_link": "",
+        "url": "",
+        "target": "",
+        "anchor": false
+    },
+    "index": {
+        "items": [
+            {
+                "title": "Workflow ecosystem rock",
+                "text": "Conversational content translating our vision of having a market leading platfrom who's the goto on this job with the way forward nor not enough bandwidth churning anomalies nor proceduralize.",
+                "image": "https://picsum.photos/id/237/900/600",
+                "categories": [
+                    {
+                        "title": "photo"
+                    },
+                    {
+                        "title": "travel"
+                    }
+                ]
+            },
+            {
+                "title": "Beef up granularity",
+                "text": "Performance review. Are we in agreeance make sure to include in your wheelhouse.",
+                "image": "https://picsum.photos/id/27/900/600",
+                "categories": [
+                    {
+                        "title": "photo"
+                    },
+                    {
+                        "title": "mobile"
+                    },
+                    {
+                        "title": "work"
+                    }
+                ]
+            },
+            {
+                "title": "Bunny no scraps hit the floor",
+                "text": "Run it up the flagpole, ping the boss and circle back looks great, can we try it a different way, so deploy to production feature creep we need to build it so that it scales.",
+                "image": "https://picsum.photos/id/405/900/600",
+                "categories": [
+                    {
+                        "title": "tech"
+                    },
+                    {
+                        "title": "travel"
+                    }
+                ]
+            },
+            {
+                "title": "Digital literacy",
+                "text": "I don't want to drain the whole swamp, i just want to shoot some alligators optimize for search. Make sure to include in your wheelhouse focus on the customer journey radical candor.",
+                "image": "https://picsum.photos/id/11/900/600",
+                "categories": [
+                    {
+                        "title": "design"
+                    },
+                    {
+                        "title": "work"
+                    }
+                ]
+            }
+        ]
+    }
+}
