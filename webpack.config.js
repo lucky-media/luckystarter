@@ -120,16 +120,30 @@ module.exports = {
                         options: {
                             data: (context) => {
                                 const templateFileName = context.resource.split('\\').pop().split('/').pop();
-
                                 const data = path.join(__dirname, `src/templates/_data/${templateFileName}.json`);
                                 const global = path.join(__dirname, 'src/templates/_data/global.json');
 
-                                context.addDependency(data); // Force webpack to watch file
-                                context.addDependency(global); // Force webpack to watch file
+                                // Force webpack to watch file
+                                context.addDependency(data);
+                                context.addDependency(global);
 
-                                return context.fs.readJsonSync([data].concat([global]), {
+                                // Read JSON from individual files
+                                const dataJson = context.fs.readJsonSync(data, {
                                     throws: false
                                 }) || {};
+
+                                // Read JSON from the global.json file.
+                                const globalJson = context.fs.readJsonSync(global, {
+                                    throws: false
+                                }) || {};
+
+                                // Merge both Data Sources
+                                const allData = {
+                                    ...dataJson,
+                                    ...globalJson
+                                };
+                                // const allData = [globalJson].concat([dataJson]);
+                                return allData;
                             }
                         },
                     },
