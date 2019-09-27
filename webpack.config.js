@@ -11,6 +11,7 @@ const TailwindCss = require('tailwindcss');
 const AutoPrefixer = require('autoprefixer');
 const path = require('path');
 const fs = require('fs');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const purgecss = require('@fullhuman/postcss-purgecss')({
     // Specify the paths to all of the template files in your project
     content: [
@@ -130,6 +131,14 @@ module.exports = {
             alwaysNotify: true
         }),
 
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 8080,
+            server: {
+                baseDir: ['web']
+            }
+        }),
+
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -152,6 +161,7 @@ module.exports = {
                 '.html',
                 '!uploads/**',
                 '!assets/**',
+                'web'
             ],
         }),
 
