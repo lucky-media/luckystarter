@@ -118,7 +118,19 @@ module.exports = {
                     {
                         loader: 'twig-html-loader',
                         options: {
-                            data: {},
+                            data: (context) => {
+                                const templateFileName = context.resource.split('\\').pop().split('/').pop();
+
+                                const data = path.join(__dirname, `src/templates/_data/${templateFileName}.json`);
+                                const global = path.join(__dirname, 'src/templates/_data/global.json');
+
+                                context.addDependency(data); // Force webpack to watch file
+                                context.addDependency(global); // Force webpack to watch file
+
+                                return context.fs.readJsonSync([data].concat([global]), {
+                                    throws: false
+                                }) || {};
+                            }
                         },
                     },
                 ],

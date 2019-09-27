@@ -1,35 +1,96 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <meta content="" name="description">
-
-  <title></title>
-<link href="main.0c5bfae581db0135aa3a.css?0c5bfae581db0135aa3a" rel="stylesheet"></head>
-
-<body class="flex flex-col min-h-screen">
-
-  <div class="flex-grow">
-    
-<div class="bg-green-500">
-    <div class="container mx-auto py-4">
-        <div class="w-full">
-            <h1>Dis is workins</h1>
-        </div>
-    </div>
-</div>
-
-  </div>
-
-  <footer class="bg-gray-200">
-    <div class="container my-4 flex justify-between text-sm text-gray-600">
-      <span class="">&copy 2019</span>
-      <span class="cursor-pointer hover:text-black">To the top</span>
-    </div>
-  </footer>
-
-<script type="text/javascript" src="main.0c5bfae581db0135aa3a.js?0c5bfae581db0135aa3a"></script></body>
-
-</html>
+<head><link href="main.47f4d9fa0625bd5f76bd.css?47f4d9fa0625bd5f76bd" rel="stylesheet"></head>Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Module build failed (from ../node_modules/twig-html-loader/index.js):
+  TypeError: path must be a string
+  
+  - CachedInputFileSystem.js:85 Storage.provideSync
+    [luckystarter]/[enhanced-resolve]/lib/CachedInputFileSystem.js:85:10
+  
+  - CachedInputFileSystem.js:263 CachedInputFileSystem.readJsonSync
+    [luckystarter]/[enhanced-resolve]/lib/CachedInputFileSystem.js:263:32
+  
+  - webpack.config.js:130 data
+    /home/lokman/Documents/Code/luckystarter/webpack.config.js:130:51
+  
+  
+  - TypeError: path must be a string
+  
+  - compiler.js:79 childCompiler.runAsChild
+    [luckystarter]/[html-webpack-plugin]/lib/compiler.js:79:16
+  
+  - Compiler.js:343 compile
+    [luckystarter]/[webpack]/lib/Compiler.js:343:11
+  
+  - Compiler.js:681 hooks.afterCompile.callAsync.err
+    [luckystarter]/[webpack]/lib/Compiler.js:681:15
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compiler.js:678 compilation.seal.err
+    [luckystarter]/[webpack]/lib/Compiler.js:678:31
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1423 hooks.optimizeAssets.callAsync.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1423:35
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1414 hooks.optimizeChunkAssets.callAsync.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1414:32
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1409 hooks.additionalAssets.callAsync.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1409:36
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1405 hooks.optimizeTree.callAsync.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1405:32
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1342 Compilation.seal
+    [luckystarter]/[webpack]/lib/Compilation.js:1342:27
+  
+  - Compiler.js:675 compilation.finish.err
+    [luckystarter]/[webpack]/lib/Compiler.js:675:18
+  
+  - Compilation.js:1261 hooks.finishModules.callAsync.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1261:4
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [luckystarter]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1253 Compilation.finish
+    [luckystarter]/[webpack]/lib/Compilation.js:1253:28
+  
+  - Compiler.js:672 hooks.make.callAsync.err
+    [luckystarter]/[webpack]/lib/Compiler.js:672:17
+  
+  
+  - Compilation.js:1185 _addModuleChain
+    [luckystarter]/[webpack]/lib/Compilation.js:1185:12
+  
+  - Compilation.js:1097 processModuleDependencies.err
+    [luckystarter]/[webpack]/lib/Compilation.js:1097:9
+  
+  - next_tick.js:61 process._tickCallback
+    internal/process/next_tick.js:61:11
+  
+</pre><script type="text/javascript" src="main.47f4d9fa0625bd5f76bd.js?47f4d9fa0625bd5f76bd"></script>
