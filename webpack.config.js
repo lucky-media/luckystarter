@@ -153,10 +153,6 @@ module.exports = {
     },
 
     plugins: [
-        new WebpackNotifierPlugin({
-            alwaysNotify: true
-        }),
-
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 8080,
@@ -187,7 +183,7 @@ module.exports = {
                 '.html',
                 '!uploads/**',
                 '!assets/**',
-                'web'
+                'web/**'
             ],
         }),
 

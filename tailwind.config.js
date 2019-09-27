@@ -3,5 +3,12 @@ module.exports = {
     extend: {}
   },
   variants: {},
-  plugins: []
+  corePlugins: {
+    container: false,
+  },
+  plugins: [
+    require('tailwind-bootstrap-grid')({
+      gridGutterWidth: '30px',
+    })
+  ]
 }
