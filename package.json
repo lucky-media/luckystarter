@@ -14,7 +14,8 @@
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "path": "^0.12.7",
-    "tailwindcss": "^1.1.2"
+    "tailwindcss": "^1.1.2",
+    "terser-webpack-plugin": "^2.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -29,6 +30,7 @@
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^3.1.0",
     "sass-loader": "^8.0.0",

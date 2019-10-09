@@ -5,8 +5,9 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackNotifierPlugin = require('webpack-notifier');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TailwindCss = require('tailwindcss');
 const AutoPrefixer = require('autoprefixer');
 const path = require('path');
@@ -150,6 +151,10 @@ module.exports = {
                 ],
             },
         ],
+    },
+
+    optimization: {
+        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
 
     plugins: [
