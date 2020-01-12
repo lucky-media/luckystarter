@@ -28,7 +28,7 @@
         <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route("admin.home") }}">
             <span class="navbar-brand-full">{{ env('APP_NAME', 'Permissions Manager') }}</span>
             <span class="navbar-brand-minimized">{{ env('APP_NAME', 'Permissions Manager') }}</span>
         </a>
