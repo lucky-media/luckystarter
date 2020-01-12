@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
+                Add User
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
+        User list
     </div>
 
     <div class="card-body">
@@ -23,16 +23,16 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.id') }}
+                            ID
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.name') }}
+                            Name
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email') }}
+                            Email
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.roles') }}
+                            Roles
                         </th>
                         <th>
                             &nbsp;
@@ -61,17 +61,17 @@
                             </td>
                             <td>
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
-                                    {{ trans('global.view') }}
+                                    View
                                 </a>
 
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                    {{ trans('global.edit') }}
+                                    Edit
                                 </a>
 
-                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                                 </form>
 
                             </td>
@@ -92,7 +92,7 @@
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('users_manage')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+  let deleteButtonTrans = 'Delete Selected'
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.users.mass_destroy') }}",
@@ -103,12 +103,12 @@
       });
 
       if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
+        alert('No rows selected')
 
         return
       }
 
-      if (confirm('{{ trans('global.areYouSure') }}')) {
+      if (confirm('Are you sure?')) {
         $.ajax({
           headers: {'x-csrf-token': _token},
           method: 'POST',

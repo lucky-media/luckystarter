@@ -15,32 +15,32 @@
             <div class="form-group {{ $errors->has('current_password') ? 'has-error' : '' }}">
                 <label for="current_password">Current password *</label>
                 <input type="password" id="current_password" name="current_password" class="form-control" required>
-                @if($errors->has('current_password'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('current_password') }}
-                    </em>
-                @endif
+                @error('current_password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                @enderror
             </div>
             <div class="form-group {{ $errors->has('new_password') ? 'has-error' : '' }}">
                 <label for="new_password">New password *</label>
                 <input type="password" id="new_password" name="new_password" class="form-control" required>
-                @if($errors->has('new_password'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('new_password') }}
-                    </em>
-                @endif
+                @error('new_password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                @enderror
             </div>
             <div class="form-group {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
                 <label for="new_password_confirmation">New password confirmation *</label>
                 <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control" required>
-                @if($errors->has('new_password_confirmation'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('new_password_confirmation') }}
-                    </em>
-                @endif
+                @error('new_password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                @enderror
             </div>
             <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                <input class="btn btn-danger" type="submit" value="Save">
             </div>
         </form>
 

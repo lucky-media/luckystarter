@@ -7,7 +7,7 @@
                     <i class="nav-icon fas fa-fw fa-tachometer-alt">
 
                     </i>
-                    {{ trans('global.dashboard') }}
+                    Dashboard
                 </a>
             </li>
             @can('users_manage')
@@ -16,7 +16,7 @@
                         <i class="fa-fw fas fa-users nav-icon">
 
                         </i>
-                        {{ trans('cruds.userManagement.title') }}
+                        User Management
                     </a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
@@ -24,7 +24,7 @@
                                 <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                                 </i>
-                                {{ trans('cruds.permission.title') }}
+                                Permissions
                             </a>
                         </li>
                         <li class="nav-item">
@@ -32,7 +32,7 @@
                                 <i class="fa-fw fas fa-briefcase nav-icon">
 
                                 </i>
-                                {{ trans('cruds.role.title') }}
+                                Roles
                             </a>
                         </li>
                         <li class="nav-item">
@@ -40,7 +40,7 @@
                                 <i class="fa-fw fas fa-user nav-icon">
 
                                 </i>
-                                {{ trans('cruds.user.title') }}
+                                Users
                             </a>
                         </li>
                     </ul>
@@ -59,7 +59,7 @@
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">
 
                     </i>
-                    {{ trans('global.logout') }}
+                    Logout
                 </a>
             </li>
         </ul>

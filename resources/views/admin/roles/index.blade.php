@@ -3,13 +3,13 @@
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
+            Add Role
         </a>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
+        Role list
     </div>
 
     <div class="card-body">
@@ -21,13 +21,13 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.role.fields.id') }}
+                            ID
                         </th>
                         <th>
-                            {{ trans('cruds.role.fields.title') }}
+                            ID
                         </th>
                         <th>
-                            {{ trans('cruds.role.fields.permissions') }}
+                            Permissions
                         </th>
                         <th>
                             &nbsp;
@@ -53,17 +53,17 @@
                             </td>
                             <td>
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.roles.show', $role->id) }}">
-                                    {{ trans('global.view') }}
+                                    View
                                 </a>
 
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.roles.edit', $role->id) }}">
-                                    {{ trans('global.edit') }}
+                                    Edit
                                 </a>
 
-                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Are you sure');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                                 </form>
                             </td>
 
@@ -82,7 +82,7 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+  let deleteButtonTrans = 'Delete Selected'
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.roles.mass_destroy') }}",
@@ -93,12 +93,12 @@
       });
 
       if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
+        alert('No rows selected')
 
         return
       }
 
-      if (confirm('{{ trans('global.areYouSure') }}')) {
+      if (confirm('Are you sure')) {
         $.ajax({
           headers: {'x-csrf-token': _token},
           method: 'POST',
