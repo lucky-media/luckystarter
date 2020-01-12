@@ -1,18 +1,21 @@
 # LuckyStarter
- Webpack + Twig Boilerplate for frontend templating
+ Laravel + Bootstrap for admin with roles and permissions
 
 # Features
-- Twig Templating Engine
-- Webpack + Browsersync
-- Tailwind CSS with Purge Css for production
-- More features are in development
+- Laravel
+- Bootstrap
+- Laravel roles and permissions
+- Admin Dashboard
 
 # How to use
-Start by cloning the project. Then run the command
-``` npm install . ```
+Start by cloning the project.
+Copy .env.example file to .env and edit database credentials there
+Then run the command
+``` composer install . ```
+Run ``` php artisan key:generate ``` 
+Run ``` php artisan migrate --seed ``` 
+Done! Login with ``` "admin@admin.com" ``` and ``` "password" ```
 
-For Development
-``` npm run watch ```
+This boilerplate is modified from the LaravelDaily package ``` laravel-roles-permissions-manager ```
 
-For Production
-``` npm run production ```
+Feel free to use it for your needs!
