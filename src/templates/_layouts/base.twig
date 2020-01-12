@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="" name="description">
+
+  <title>{{ post.title }}</title>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+  <div class="flex-grow">
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer class="bg-gray-200">
+    <div class="container my-4 flex justify-between text-sm text-gray-600">
+      <span class="">&copy 2019</span>
+      <span class="cursor-pointer hover:text-black">To the top</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+.navigation {
+
+  &__items {
+    @apply hidden;
+
+    @screen lg {
+      @apply flex;
+    }
+  }
+
+  &--open {
+    @apply fixed top-0 h-full w-full z-50;
+
+    & .navigation__items {
+      @apply block;
+    }
+  }
+}

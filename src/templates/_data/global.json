@@ -1,0 +1,35 @@
+{
+    "navigation": {
+        "items": [
+            {
+                "title": "Strategy",
+                "url": "#"
+            },
+            {
+                "title": "Documentation",
+                "url": "#"
+            },
+            {
+                "title": "Products",
+                "url": "#"
+            },
+            {
+                "title": "Pricing",
+                "url": "#"
+            }
+        ],
+        "cta": {
+            "title": "Download",
+            "url": "#"
+        }
+    },
+    "options": {
+        "footer": {
+            "title": "Yoo its"
+        },
+        "cookie": {
+            "content": "Hard stop. Root-and-branch review <strong>proceduralize</strong>, so work. What about <em>scaling</em> components to a global audience? thought shower, quick win, and low hanging fruit and big boy pants or prairie dogging build on a culture of contribution and inclusion.",
+            "cta": "Close"
+        }
+    }
+}
