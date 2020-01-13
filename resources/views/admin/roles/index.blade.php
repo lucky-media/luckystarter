@@ -14,12 +14,9 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Role">
+            <table class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
-                        <th width="10">
-
-                        </th>
                         <th>
                             ID
                         </th>
@@ -37,9 +34,6 @@
                 <tbody>
                     @foreach($roles as $key => $role)
                         <tr data-entry-id="{{ $role->id }}">
-                            <td>
-
-                            </td>
                             <td>
                                 {{ $role->id ?? '' }}
                             </td>
@@ -66,60 +60,11 @@
                                     <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                                 </form>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-
     </div>
 </div>
-@endsection
-@section('scripts')
-@parent
-<script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  let deleteButtonTrans = 'Delete Selected'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.roles.mass_destroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
-      });
-
-      if (ids.length === 0) {
-        alert('No rows selected')
-
-        return
-      }
-
-      if (confirm('Are you sure')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  $('.datatable-Role:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
-
-</script>
 @endsection

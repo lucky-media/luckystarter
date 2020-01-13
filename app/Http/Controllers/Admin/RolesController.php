@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ class RolesController extends Controller
     /**
      * Display a listing of Role.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -31,13 +33,12 @@ class RolesController extends Controller
     /**
      * Show the form for creating new Role.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $permissions = Permission::get()->pluck('name', 'name');
 
         return view('admin.roles.create', compact('permissions'));
@@ -47,13 +48,12 @@ class RolesController extends Controller
      * Store a newly created Role in storage.
      *
      * @param  \App\Http\Requests\StoreRolesRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRolesRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role = Role::create($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
         $role->givePermissionTo($permissions);
@@ -65,14 +65,13 @@ class RolesController extends Controller
     /**
      * Show the form for editing Role.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * @return Factory|View
      */
     public function edit(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $permissions = Permission::get()->pluck('name', 'name');
 
         return view('admin.roles.edit', compact('role', 'permissions'));
@@ -81,15 +80,13 @@ class RolesController extends Controller
     /**
      * Update Role in storage.
      *
-     * @param  \App\Http\Requests\UpdateRolesRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateRolesRequest $request
+     * @param Role $role
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRolesRequest $request, Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $role->update($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
@@ -100,9 +97,7 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $role->load('permissions');
 
@@ -113,30 +108,17 @@ class RolesController extends Controller
     /**
      * Remove Role from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $role->delete();
 
         return redirect()->route('admin.roles.index');
-    }
-
-    /**
-     * Delete all selected Role at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        Role::whereIn('id', request('ids'))->delete();
-
-        return response()->noContent();
     }
 
 }

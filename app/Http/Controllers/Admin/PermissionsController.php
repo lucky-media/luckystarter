@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Contracts\View\Factory;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePermissionsRequest;
 use App\Http\Requests\Admin\UpdatePermissionsRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermissionsController extends Controller
 {
     /**
      * Display a listing of Permission.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|\Illuminate\View\View
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permissions = Permission::all();
 
@@ -30,13 +30,12 @@ class PermissionsController extends Controller
     /**
      * Show the form for creating new Permission.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|\Illuminate\View\View
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return view('admin.permissions.create');
     }
 
@@ -48,9 +47,8 @@ class PermissionsController extends Controller
      */
     public function store(StorePermissionsRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         Permission::create($request->all());
 
         return redirect()->route('admin.permissions.index');
@@ -60,14 +58,12 @@ class PermissionsController extends Controller
     /**
      * Show the form for editing Permission.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Permission $permission
+     * @return Factory|\Illuminate\View\View
      */
     public function edit(Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.permissions.edit', compact('permission'));
     }
@@ -81,9 +77,7 @@ class PermissionsController extends Controller
      */
     public function update(UpdatePermissionsRequest $request, Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->update($request->all());
 
@@ -94,14 +88,13 @@ class PermissionsController extends Controller
     /**
      * Remove Permission from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Permission $permission
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
 
@@ -110,23 +103,8 @@ class PermissionsController extends Controller
 
     public function show(Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.permissions.show', compact('permission'));
     }
-
-    /**
-     * Delete all selected Permission at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        Permission::whereIn('id', request('ids'))->delete();
-
-        return response()->noContent();
-    }
-
 }
