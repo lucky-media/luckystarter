@@ -17,7 +17,8 @@ class UserSeed extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('password')
         ]);
-        $user->assignRole('administrator');
+
+        $user->assignRole('admin');
 
     }
 }

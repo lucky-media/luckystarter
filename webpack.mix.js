@@ -1,4 +1,6 @@
-const { mix } = require('laravel-mix');
+let mix = require("laravel-mix");
+const tailwindcss = require('tailwindcss');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +13,26 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+// Backend Assets
+mix
+    .js("resources/js/admin/app.js", "public/admin/js")
+    .sass("resources/sass/admin/app.scss", "public/admin/css")
+    .copyDirectory("resources/js/admin/vendors", "public/admin/js/vendors")
+    .copyDirectory("resources/sass/admin/fonts", "public/admin/css/fonts")
+    .options({
+        processCssUrls: false,
+    });
+
+// Frontend Assets
+mix
+    .js("resources/js/frontend/app.js", "public/front/js")
+    .sass("resources/sass/frontend/app.scss", "public/front/css")
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss() ],
+    });
+
+if(mix.inProduction())
+{
+    mix.purgeCss();
+}

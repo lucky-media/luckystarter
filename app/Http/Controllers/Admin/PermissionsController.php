@@ -6,127 +6,59 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StorePermissionsRequest;
-use App\Http\Requests\Admin\UpdatePermissionsRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermissionsController extends Controller
 {
-    /**
-     * Display a listing of Permission.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permissions = Permission::all();
 
         return view('admin.permissions.index', compact('permissions'));
     }
 
-    /**
-     * Show the form for creating new Permission.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        return view('admin.permissions.create');
-    }
 
-    /**
-     * Store a newly created Permission in storage.
-     *
-     * @param  \App\Http\Requests\StorePermissionsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePermissionsRequest $request)
+    public function store(Request $request)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $request->validate(['name' => 'required']);
+
         Permission::create($request->all());
 
-        return redirect()->route('admin.permissions.index');
+        return back()->with(['success' => 'Permission Created']);
     }
 
 
-    /**
-     * Show the form for editing Permission.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.permissions.edit', compact('permission'));
     }
 
-    /**
-     * Update Permission in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePermissionsRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePermissionsRequest $request, Permission $permission)
+
+    public function update(Request $request, Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $request->validate(['name' => 'required']);
 
         $permission->update($request->all());
 
-        return redirect()->route('admin.permissions.index');
+        return redirect()->route('admin.permissions.index')->with(['success' => 'Permission Updated']);
     }
 
-
-    /**
-     * Remove Permission from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Permission $permission)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
 
-        return redirect()->route('admin.permissions.index');
-    }
-
-    public function show(Permission $permission)
-    {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-
-        return view('admin.permissions.show', compact('permission'));
-    }
-
-    /**
-     * Delete all selected Permission at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        Permission::whereIn('id', request('ids'))->delete();
-
-        return response()->noContent();
+        return redirect()->route('admin.permissions.index')->with(['error' => 'Permission Deleted']);
     }
 
 }

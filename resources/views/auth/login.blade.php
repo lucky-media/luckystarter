@@ -1,66 +1,69 @@
-@extends('layouts.app')
-@section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card-group">
-            <div class="card p-4">
-                <div class="card-body">
-                    @if(\Session::has('message'))
-                        <p class="alert alert-info">
-                            {{ \Session::get('message') }}
-                        </p>
-                    @endif
-                    <form method="POST" action="{{ route('login') }}">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Lucky Starter') }}</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{{ asset('admin/js/app.js') }}" defer></script>
+</head>
+<body>
+<div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-login mx-auto">
+                    <div class="text-center mb-6">
+                        <h4 class="h3 font-weight-bold">luckystarter</h4>
+                    </div>
+                    <form class="card" action="{{ route('login') }}" method="post">
                         {{ csrf_field() }}
-                        <h1>{{ env('APP_NAME', 'Permissions Manager') }}</h1>
-                        <p class="text-muted">Login</p>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fa fa-user"></i>
+                        <div class="card-body p-6">
+                            <div class="card-title">Login to your account</div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email"
+                                       class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                       name="email" id="email"
+                                       value="{{ old('email', null) }}" required autofocus
+                                       placeholder="Enter email">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
                                 </span>
+                                @enderror
                             </div>
-                            <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Email" value="{{ old('email', null) }}">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Password
+                                </label>
+                                <input type="password"
+                                       class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                       name="password" id="password"
+                                       placeholder="Password">
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </span>
+                                @enderror
                             </div>
-                            <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="input-group mb-4">
-                            <div class="form-check checkbox">
-                                <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
-                                <label class="form-check-label" for="remember" style="vertical-align: middle;">
-                                    Remember me
+                            <div class="form-group">
+                                <label for="remember" class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="remember" class="custom-control-input"/>
+                                    <span class="custom-control-label">Remember me</span>
                                 </label>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <button type="submit" class="btn btn-primary px-4">
-                                    Login
-                                </button>
-                            </div>
-                            <div class="col-6 text-right">
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
-                                    Forgot your password?
-                                </a>
-
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Login</button>
                             </div>
                         </div>
                     </form>
@@ -69,4 +72,5 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

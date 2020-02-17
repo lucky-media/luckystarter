@@ -1,71 +1,71 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        Create User
+                    </div>
 
-<div class="card">
-    <div class="card-header">
-        Create User
+                    <div class="card-body">
+                        <form action="{{ route("admin.users.store") }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name*</label>
+                                <input type="text" id="name" name="name"
+                                       class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                       value="{{ old('name') }}"
+                                       required>
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input type="email" id="email" name="email"
+                                       class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                       value="{{ old('email') }}" required>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                 </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password"
+                                       class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" required>
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="roles">Roles*</label>
+                                <select name="roles[]" id="roles" class="form-control select-tags" multiple="multiple"
+                                        required>
+                                    @foreach($roles as $id => $roles)
+                                        <option value="{{ $id }}">{{ $roles }}</option>
+                                    @endforeach
+                                </select>
+                                @error('roles')
+                                <span class="invalid-feedback" role="alert">
+                                       <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div>
+                                <input class="btn btn-primary" type="submit" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="card-body">
-        <form action="{{ route("admin.users.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                <label for="name">Name*</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($user) ? $user->name : '') }}" required>
-                @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-                <p class="helper-block">
-                    {{ trans('cruds.user.fields.name_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                <label for="email">Email*</label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}" required>
-                @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-                <p class="helper-block">
-                    {{ trans('cruds.user.fields.email_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-                @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-                <p class="helper-block">
-                    {{ trans('cruds.user.fields.password_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}">
-                <label for="roles">Roles*
-                    <span class="btn btn-info btn-xs select-all">Select All</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect All</span></label>
-                <select name="roles[]" id="roles" class="form-control select2" multiple="multiple" required>
-                    @foreach($roles as $id => $roles)
-                        <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
-                    @endforeach
-                </select>
-                @error('roles')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-            </div>
-            <div>
-                <input class="btn btn-danger" type="submit" value="Save">
-            </div>
-        </form>
-
-
-    </div>
-</div>
 @endsection
