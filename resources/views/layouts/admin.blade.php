@@ -11,15 +11,15 @@
     <title>{{ config('app.name', 'Lucky Starter') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <script src="{{ asset('admin/js/vendors/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendors/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendors/selectize.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendors/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendors/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendors/selectize.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ asset('admin/js/app.js') }}" defer></script>
+    <script src="{{ asset('backend/js/app.js') }}" defer></script>
 </head>
 <body>
 

@@ -16,8 +16,5 @@
 - Run ``` php artisan migrate --seed ``` 
 - Done! Login with ``` "admin@admin.com" ``` and ``` "password" ```
 
-# Notice
-This boilerplate is modified from the LaravelDaily package ``` laravel-roles-permissions-manager ```
-
 # Licence
 The <a href="http://opensource.org/licenses/MIT">MIT license.</a>

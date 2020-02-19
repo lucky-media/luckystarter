@@ -2,9 +2,8 @@
 
 Auth::routes(['register' => false]);
 
-Route::redirect('/admin', '/admin/home');
-
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::redirect('/', '/admin/home');
     Route::get('/home', 'IndexController@index')->name('home');
     Route::resource('permissions', 'PermissionsController')->except(['create', 'show']);
     Route::resource('roles', 'RolesController');

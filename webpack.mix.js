@@ -15,10 +15,10 @@ require('laravel-mix-purgecss');
 
 // Backend Assets
 mix
-    .js("resources/js/admin/app.js", "public/admin/js")
-    .sass("resources/sass/admin/app.scss", "public/admin/css")
-    .copyDirectory("resources/js/admin/vendors", "public/admin/js/vendors")
-    .copyDirectory("resources/sass/admin/fonts", "public/admin/css/fonts")
+    .js("resources/js/admin/app.js", "public/backend/js")
+    .sass("resources/sass/admin/app.scss", "public/backend/css")
+    .copyDirectory("resources/js/admin/vendors", "public/backend/js/vendors")
+    .copyDirectory("resources/sass/admin/fonts", "public/backend/css/fonts")
     .options({
         processCssUrls: false,
     });
