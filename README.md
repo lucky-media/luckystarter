@@ -1,11 +1,21 @@
 # LuckyStarter
- Laravel + Bootstrap for admin with roles and permissions
+ Laravel + Bootstrap for admin with roles and permissions, admin panel setup with Tabler and separate views for Admin and Frontend.
+
+![image-1](https://user-images.githubusercontent.com/11158157/74981361-6783a480-5432-11ea-9886-4f444a121e98.png)
+
+![image-2](https://user-images.githubusercontent.com/11158157/74981365-68b4d180-5432-11ea-83f7-7f317cad02b6.png)
+
+
 
 # Features
-- Laravel
-- Bootstrap
-- Laravel roles and permissions
-- Admin Dashboard
+- Laravel v6
+- Bootstrap v4 for Admin
+- TailwindCSS for the frontend
+- Roles and permissions
+- Separate Assets for frontend and backend
+- Admin Dashboard with Tabler
+- Frontend with Tailwind CSS.
+- Purge CSS for Production
 
 # How to use
 - Start by cloning the project.

@@ -15,24 +15,33 @@ require('laravel-mix-purgecss');
 
 // Backend Assets
 mix
-    .js("resources/js/admin/app.js", "public/backend/js")
-    .sass("resources/sass/admin/app.scss", "public/backend/css")
-    .copyDirectory("resources/js/admin/vendors", "public/backend/js/vendors")
-    .copyDirectory("resources/sass/admin/fonts", "public/backend/css/fonts")
+    .js("resources/js/admin/app.js", "public/assets/admin/js")
+    .sass("resources/sass/admin/app.scss", "public/assets/admin/css")
+    .copyDirectory("resources/sass/admin/fonts", "public/assets/admin/fonts")
+    .copyDirectory("resources/images", "public/assets/images")
     .options({
         processCssUrls: false,
     });
+
+// Vendor Assets
+mix.combine([
+        'resources/js/admin/vendors/jquery-3.2.1.min.js',
+        'resources/js/admin/vendors/bootstrap.bundle.min.js',
+        'resources/js/admin/vendors/selectize.min.js',
+        'resources/js/admin/vendors/dataTables.min.js',
+        'resources/js/admin/vendors/toastr.min.js'
+    ], 'public/assets/admin/js/vendor.js'
+);
 
 // Frontend Assets
 mix
-    .js("resources/js/frontend/app.js", "public/front/js")
-    .sass("resources/sass/frontend/app.scss", "public/front/css")
+    .js("resources/js/frontend/app.js", "public/assets/front/js")
+    .sass("resources/sass/frontend/app.scss", "public/assets/front/css")
     .options({
         processCssUrls: false,
-        postCss: [ tailwindcss() ],
+        postCss: [tailwindcss()],
     });
 
-if(mix.inProduction())
-{
+if (mix.inProduction()) {
     mix.purgeCss();
 }

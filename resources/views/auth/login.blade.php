@@ -11,10 +11,7 @@
     <title>{{ config('app.name', 'Lucky Starter') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="{{ asset('admin/js/app.js') }}" defer></script>
+    <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div class="page">
@@ -23,7 +20,7 @@
             <div class="row">
                 <div class="col col-login mx-auto">
                     <div class="text-center mb-6">
-                        <h4 class="h3 font-weight-bold">luckystarter</h4>
+                        <img src="{{ asset('assets/images/logo.svg') }}" class="header-brand-img" alt="logo">
                     </div>
                     <form class="card" action="{{ route('login') }}" method="post">
                         {{ csrf_field() }}

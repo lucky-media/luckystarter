@@ -11,10 +11,10 @@
     <title>{{ config('app.name', 'Lucky Starter') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('front/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/front/css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('front/js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/front/js/app.js') }}" defer></script>
 </head>
 <body>
 <div id="app">

@@ -5,21 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{--  CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Lucky Starter') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    {{--  CSS Styles  --}}
+    <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('backend/js/vendors/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('backend/js/vendors/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/js/vendors/selectize.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ asset('backend/js/app.js') }}" defer></script>
+    {{--  Vendor JS Assets  --}}
+    <script src="{{ asset('assets/admin/js/vendor.js') }}"></script>
+
+    {{--  Javascript Assets  --}}
+    <script src="{{ asset('assets/admin/js/app.js') }}" defer></script>
 </head>
 <body>
 
@@ -29,8 +27,8 @@
     <div class="header py-4">
         <div class="container">
             <div class="d-flex">
-                <a class="header-brand" href="">
-                    luckystarter
+                <a class="header-brand" href="{{ route('admin.home') }}">
+                    <img src="{{ asset('assets/images/logo.svg') }}" class="header-brand-img" alt="logo">
                 </a>
 
                 <div class="d-flex order-lg-2 ml-auto">
