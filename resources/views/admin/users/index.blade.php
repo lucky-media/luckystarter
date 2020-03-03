@@ -27,18 +27,12 @@
                             <tbody>
                             @foreach($users as $key => $user)
                                 <tr>
-                                    <td>
-                                        {{ $user->id ?? '' }}
-                                    </td>
-                                    <td>
-                                        {{ $user->name ?? '' }}
-                                    </td>
-                                    <td>
-                                        {{ $user->email ?? '' }}
-                                    </td>
+                                    <td>{{ $user->id ?? '' }}</td>
+                                    <td>{{ $user->name ?? '' }}</td>
+                                    <td>{{ $user->email ?? '' }}</td>
                                     <td>
                                         @foreach($user->roles()->pluck('name') as $role)
-                                            <span class="badge badge-info">{{ $role }}</span>
+                                            <span class="badge badge-info">{{ ucfirst($role) }}</span>
                                         @endforeach
                                     </td>
                                     <td>

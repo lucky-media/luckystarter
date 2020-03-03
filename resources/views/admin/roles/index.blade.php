@@ -33,10 +33,10 @@
                             @foreach($roles as $key => $role)
                                 <tr data-entry-id="{{ $role->id }}">
                                     <td>
-                                        {{ $role->id ?? '' }}
+                                        {{ $role->id  }}
                                     </td>
                                     <td>
-                                        {{ $role->name ?? '' }}
+                                        {{ ucfirst($role->name) }}
                                     </td>
                                     <td>
                                         @foreach($role->permissions()->pluck('name') as $permission)

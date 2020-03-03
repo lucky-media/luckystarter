@@ -22,21 +22,13 @@
                         <form action="{{ route("admin.permissions.update", [$permission->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <label for="name">Title*</label>
-                                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($permission) ? $permission->name : '') }}" required>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                                @enderror
-                            </div>
+
+                            <x-input name="name" type="text" label="Title*" required="true" :value="$permission->name"></x-input>
+
                             <div class="d-flex">
                                 <button class="btn btn-primary" type="submit">Save</button>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>

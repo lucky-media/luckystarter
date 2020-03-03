@@ -23,12 +23,8 @@
                               enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="name">Title*</label>
-                                <input type="text" id="name" name="name"
-                                       class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                       value="{{ $role->name }}" required>
-                            </div>
+                            <x-input name="name" label="Title*" type="text" required="true" :value="$role->name"></x-input>
+
                             <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
                                 <label for="permission">Permissions*</label>
                                 <select name="permission[]" id="permission" class="form-control select-tags"

@@ -12,16 +12,9 @@
                         <form action="{{ route("admin.permissions.store") }}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <label for="name">Title*</label>
-                                <input type="text" id="name" name="name" class="form-control"
-                                       value="{{ old('name', isset($permission) ? $permission->name : '') }}" required>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                                @enderror
-                            </div>
+
+                            <x-input name="name" label="Title*" type="text" required="true" :value="old('name')"></x-input>
+
                             <div>
                                 <input class="btn btn-primary" type="submit" value="Save">
                             </div>

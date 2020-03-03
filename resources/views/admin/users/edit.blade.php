@@ -25,54 +25,15 @@
                               enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="name">Name*</label>
-                                <input type="text" id="name" name="name"
-                                       class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                       value="{{ $user->name }}"
-                                       required>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                                 </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email*</label>
-                                <input type="email" id="email" name="email"
-                                       class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                       value="{{ $user->email }}" required>
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password"
-                                       class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" required>
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="roles">Roles*</label>
-                                <select name="roles[]" id="roles" class="form-control select-tags" multiple="multiple"
-                                        required>
-                                    @foreach($roles as $id => $roles)
-                                        <option value="{{ $id }}" {{ $user->roles()->pluck('name', 'id')->contains($id) ? 'selected' : '' }}>{{ $roles }}</option>
-                                    @endforeach
-                                </select>
-                                @error('roles')
-                                <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                                @enderror
-                            </div>
+                            <x-input name="name" label="Name*" type="text" required="true" :value="$user->name"></x-input>
+
+                            <x-input name="email" label="Email*" type="email" required="true" :value="$user->email"></x-input>
+
+                            <x-input name="password" label="Password*" type="password" required="false" :value="old('password')"></x-input>
+
+                            <x-roles :roles="$roles" :user="$user"></x-roles>
+
                             <div>
                                 <input class="btn btn-primary" type="submit" value="Save">
                             </div>

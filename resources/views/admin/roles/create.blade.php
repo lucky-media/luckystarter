@@ -11,11 +11,8 @@
                     <div class="card-body">
                         <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Title*</label>
-                                <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                       value="{{ old('name') }}" required>
-                            </div>
+                            <x-input name="name" label="Title*" type="text" required="true" :value="old('name')"></x-input>
+
                             <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
                                 <label for="permission">Permissions*</label>
                                 <select name="permission[]" id="permission" class="form-control select-tags"
